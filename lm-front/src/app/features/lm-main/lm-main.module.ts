@@ -27,10 +27,6 @@ const routes: Routes = [
         loadChildren: () => import('./lm-books/lm-books.module').then(m => m.LmBooksModule)
       },
       {
-        path: 'profile',
-        loadChildren: () => import('./lm-profil/lm-profil.module').then(m => m.LmProfilModule)
-      },
-      {
         path: 'stats',
         loadChildren: () => import('./lm-stats/lm-stats.module').then(m => m.LmStatsModule)
       },
