@@ -1,6 +1,4 @@
-package lm.admin.z;
-//
-//import java.io.Serializable;
+package lm.admin.dto;
 
 import lm.admin.model.MyUserDetails;
 import lombok.AllArgsConstructor;
@@ -13,6 +11,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthenticationResponse implements Serializable {
-    private String jwt;
+    private String token;
     private MyUserDetails user ;
 }

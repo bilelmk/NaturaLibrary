@@ -28,12 +28,12 @@
 
       &-text {
         font-size: 18px;
-        color : $cb-dark ;
+        color : $lm-dark ;
       }
 
       .active {
-        color: $cb-white;
-        background-color: $cb-navy;
+        color: $lm-white;
+        background-color: $lm-primary;
       }
 
       mat-list-item {
@@ -46,11 +46,11 @@
         transition: 0.4s;
         outline: none;
         cursor: pointer;
-        color: $cb-grey;
+        color: $lm-grey;
 
         &:hover:not(.active) {
-          color: $cb-white;
-          background-color: $cb-navy;
+          color: $lm-white;
+          background-color: $lm-primary;
         }
 
         span {

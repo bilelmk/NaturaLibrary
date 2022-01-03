@@ -13,7 +13,7 @@ import { SnackbarService } from '../../core/services/in-app/snackbar.service';
 })
 export class LmRegisterComponent implements OnInit {
 
-  loginForm: FormGroup;
+  form: FormGroup;
   error : string = null ;
 
   constructor(private formBuilder: FormBuilder ,
@@ -25,17 +25,17 @@ export class LmRegisterComponent implements OnInit {
 
   ngOnInit(): void
   {
-    this.loginForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       username   : ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
 
-  onLogin() {
+  register() {
     this.spinnerService.activate()
     let authRequest = {
-      username: this.loginForm.value.username,
-      password: this.loginForm.value.password
+      username: this.form.value.username,
+      password: this.form.value.password
     }
     this.authenticationService.login(authRequest).subscribe(
       res => {

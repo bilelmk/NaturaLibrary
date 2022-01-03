@@ -8,14 +8,14 @@ button {
 .submit-btn {
   padding: 10px;
   margin-bottom: 10px;
-  background: $cb-blue;
-  color: $cb-white ;
+  background: $lm-secondary;
+  color: $lm-white ;
   border: none;
   border-radius: 4px;
   transition: 1s;
 
   &:hover:enabled {
-    background: $cb-navy;
+    background: $lm-primary;
   }
 
   &[disabled]{
@@ -26,9 +26,9 @@ button {
 .square-btn {
   padding: 12px 15px 12px 15px;
   border-radius: 5px;
-  background-color: #dbe2ef;
-  color : $cb-navy;
-  border: none;
+  background-color: #c7eeab;
+  color : $lm-primary;
+  border: 1px solid  $lm-primary;
   transition: 0.4s ;
   outline: none !important;
   i {
@@ -36,7 +36,7 @@ button {
   }
 
   &:hover {
-    background-color: $cb-navy;
+    background-color: $lm-primary;
     i {
       color : #f9f7f7 ;
     }
@@ -44,32 +44,31 @@ button {
 }
 
 .cell-btn {
-  margin: 0 5px !important;
   width: 44px;
   height: 44px;
   padding: 10px;
   cursor: pointer ;
-  color : $cb-navy;
+  color : $lm-primary;
   border-radius: 10%;
   transition: 0.4s;
 }
 
-.select-btn {
-  border-radius: 2px;
-  width: 25px;
-  height: 25px;
-  padding: 5px;
-  background-color: $cb-blue;
-  color : $cb-white;
-  border: none;
-  transition: 0.4s ;
-  outline: none !important;
-  mat-icon {
-    width: 15px;
-    height: 15px;
-    font-size: 15px;
-  }
-  &:hover {
-    background-color: $cb-navy;
-  }
-}
+//.select-btn {
+//  border-radius: 2px;
+//  width: 25px;
+//  height: 25px;
+//  padding: 5px;
+//  background-color: $cb-blue;
+//  color : $cb-white;
+//  border: none;
+//  transition: 0.4s ;
+//  outline: none !important;
+//  mat-icon {
+//    width: 15px;
+//    height: 15px;
+//    font-size: 15px;
+//  }
+//  &:hover {
+//    background-color: $cb-navy;
+//  }
+//}

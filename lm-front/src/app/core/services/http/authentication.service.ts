@@ -26,10 +26,6 @@ export class AuthenticationService {
     return this.http.get<Admin>(this.URL);
   }
 
-  // register( freelancer: Admin): Observable<any> {
-  //   return this.http.post<any>(this.URL + '/register' , freelancer);
-  // }
-
   login(loginRequest: LoginRequest): Observable<any> {
     return this.http.post<any>(this.URL + '/signin' , loginRequest);
   }

@@ -26,7 +26,15 @@
               </mat-form-field>
             </div>
 
-            <div class="col-12 mb-3">
+            <div class="col-12 row justify-content-between align-content-center" >
+              <span class="mt-3">Vous étes :</span>
+              <mat-button-toggle-group class="text-center" formControlName="type">
+                <mat-button-toggle value="admin">Administrateur</mat-button-toggle>
+                <mat-button-toggle value="user">Etudiant</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+
+            <div class="col-12 mb-3 mt-3">
               <button class="submit-btn full-width"  (click)="onLogin()" [disabled]="!loginForm.valid" >
                 Se connecter
               </button>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CbAdminsComponent } from './cb-admins.component';
+import { LmBooksModalComponent } from './lm-books-modal.component';
 
-describe('CbAdminsComponent', () => {
-  let component: CbAdminsComponent;
-  let fixture: ComponentFixture<CbAdminsComponent>;
+describe('LmBooksModalComponent', () => {
+  let component: LmBooksModalComponent;
+  let fixture: ComponentFixture<LmBooksModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CbAdminsComponent ]
+      declarations: [ LmBooksModalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CbAdminsComponent);
+    fixture = TestBed.createComponent(LmBooksModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

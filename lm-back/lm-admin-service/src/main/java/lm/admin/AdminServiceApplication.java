@@ -1,6 +1,10 @@
 package lm.admin;
 
+import lm.admin.model.Admin;
+import lm.admin.repository.AdminRepository;
+import lm.admin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -9,9 +13,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
@@ -19,12 +22,15 @@ public class AdminServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AdminServiceApplication.class, args);
 	}
-}
 
-//	@CrossOrigin(origins = "*")
-//	@RequestMapping(value = "/postAuthData", method = RequestMethod.POST)
-//	public User postAuthData(@RequestBody User user){
-//		return userRepository.save(user) ;
+	@Bean
+	public CommandLineRunner init(AdminService adminService , AdminRepository adminRepository) {
+		return args -> {
+			Admin admin = adminRepository.findByUsername("yoyo").orElse(null);
+			if(admin == null) adminService.create(new Admin(1L,"Eya", "Bk","yoyo", "123456"));
+		};
+	}
+}
 
 @EnableWebSecurity
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -40,7 +46,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
+		return new BCryptPasswordEncoder();
 	}
 
 	@Override
@@ -52,11 +58,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable()
-				.authorizeRequests().antMatchers("/authenticate", "/postAuthData").permitAll().
-						anyRequest().authenticated().and().
-						exceptionHandling().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
+				.authorizeRequests().antMatchers("/api/admins/login" ).permitAll();
+//				anyRequest().authenticated().and().exceptionHandling();
 	}
 
 }

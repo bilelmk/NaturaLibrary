@@ -9,7 +9,7 @@
   .title {
     font-weight: 400;
     font-size: 130%;
-    color : $cb-navy;
+    color : $lm-primary;
     text-transform: uppercase;
     margin: 0;
     display: block;
@@ -18,8 +18,10 @@
   .title-icon {
     padding: 14px 15px 12px 15px ;
     border-radius: 5px ;
-    background-color: #dbe2ef ;
-    color: $cb-navy;
+    background-color: #c7eeab;
+    outline: none;
+    border: 1px solid $lm-primary;
+    color: $lm-primary;
     width: 55px;
     height: 55px;
     margin-right: 10px;
@@ -28,6 +30,6 @@
   .server-error {
     font-size: 120% !important;
     font-weight: 500 !important;
-    color: $cb-navy;
+    color: $lm-primary;
   }
 }
