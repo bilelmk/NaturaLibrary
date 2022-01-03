@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Admin } from '../../models/admin';
-import { LoginRequest } from '../../dtos/login-request';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +25,4 @@ export class AuthenticationService {
     return this.http.get<Admin>(this.URL);
   }
 
-  login(loginRequest: LoginRequest): Observable<any> {
-    return this.http.post<any>(this.URL + '/signin' , loginRequest);
-  }
 }

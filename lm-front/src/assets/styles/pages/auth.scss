@@ -6,6 +6,8 @@
   text-transform: uppercase;
 }
 
-
-
-
+.link {
+  font-weight: bold;
+  cursor: pointer;
+  color: $lm-primary;
+}

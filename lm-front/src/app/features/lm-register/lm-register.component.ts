@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SpinnerService } from '../../core/services/in-app/spinner.service';
-import { AuthenticationService } from '../../core/services/http/authentication.service';
 import { SessionStorageService } from '../../core/services/in-app/session-storage.service';
 import { SnackbarService } from '../../core/services/in-app/snackbar.service';
+import {UsersService} from '../../core/services/http/users.service';
 
 @Component({
   selector: 'app-lm-register',
@@ -19,37 +19,37 @@ export class LmRegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder ,
               private router: Router ,
               private spinnerService: SpinnerService ,
-              private authenticationService: AuthenticationService ,
               private sessionStorageService: SessionStorageService ,
-              private snackbarService: SnackbarService) {}
+              private snackbarService: SnackbarService ,
+              private usersService: UsersService) {}
 
-  ngOnInit(): void
-  {
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
       username   : ['', [Validators.required]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      level: ['', Validators.required]
     });
   }
 
   register() {
     this.spinnerService.activate()
-    let authRequest = {
-      username: this.form.value.username,
-      password: this.form.value.password
-    }
-    this.authenticationService.login(authRequest).subscribe(
+    this.usersService.add(this.form.value).subscribe(
       res => {
-        this.sessionStorageService.save(res.token) ;
         this.spinnerService.deactivate() ;
-        this.snackbarService.openSnackBar("Connecté avec succès" , 'success')
-        this.router.navigate(['/main'])
+        this.snackbarService.openSnackBar("Compte créer avec succès" , 'success')
+        this.router.navigate(['/login'])
       },
       error => {
-        this.snackbarService.openSnackBar(error.error.message , 'fail')
+        this.snackbarService.openSnackBar("Erreur lors de création de compte" , 'fail')
         this.spinnerService.deactivate()
 
       }
     )
   }
 
+  toLogin() {
+    this.router.navigate(['/login'])
+  }
 }

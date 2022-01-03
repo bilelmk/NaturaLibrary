@@ -55,7 +55,7 @@ public class AdminService {
         toUpdateAdmin.setFirstName(admin.getFirstName());
         toUpdateAdmin.setLastName(admin.getLastName());
         toUpdateAdmin.setUsername(admin.getUsername());
-        return adminRepository.save(admin) ;
+        return adminRepository.save(toUpdateAdmin) ;
     }
 
     public ResponseEntity login(AuthenticationRequest request) throws Exception {

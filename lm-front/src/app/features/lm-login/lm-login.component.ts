@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SpinnerService } from '../../core/services/in-app/spinner.service';
-import { AuthenticationService } from '../../core/services/http/authentication.service';
 import { SessionStorageService } from '../../core/services/in-app/session-storage.service';
 import { SnackbarService } from '../../core/services/in-app/snackbar.service';
-import {AdminsService} from '../../core/services/http/admins.service';
+import { AdminsService } from '../../core/services/http/admins.service';
+import { UsersService } from '../../core/services/http/users.service';
 
 @Component({
   selector: 'app-lm-login',
@@ -22,7 +22,8 @@ export class LmLoginComponent implements OnInit {
               private spinnerService: SpinnerService ,
               private adminService: AdminsService ,
               private sessionStorageService: SessionStorageService ,
-              private snackbarService: SnackbarService) {}
+              private snackbarService: SnackbarService,
+              private usersService: UsersService) {}
 
   ngOnInit(): void
   {
@@ -39,13 +40,24 @@ export class LmLoginComponent implements OnInit {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     }
+
     if(this.loginForm.value.type == 'user') {
-      this.spinnerService.deactivate() ;
+      this.usersService.login(authRequest).subscribe(
+        res => {
+          this.sessionStorageService.save(res.token) ;
+          this.spinnerService.deactivate() ;
+          this.snackbarService.openSnackBar("Connecté avec succès" , 'success')
+          this.router.navigate(['/main'])
+        },
+        error => {
+          this.snackbarService.openSnackBar("Nom d'utilisateur ou mot de passe incorrect" , 'fail')
+          this.spinnerService.deactivate()
+        }
+      )
     }
     else {
       this.adminService.login(authRequest).subscribe(
         res => {
-          console.log(res)
           this.sessionStorageService.save(res.token) ;
           this.spinnerService.deactivate() ;
           this.snackbarService.openSnackBar("Connecté avec succès" , 'success')
@@ -60,4 +72,7 @@ export class LmLoginComponent implements OnInit {
 
   }
 
+  toRegister() {
+    this.router.navigate(['/register'])
+  }
 }

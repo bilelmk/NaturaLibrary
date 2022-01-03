@@ -1,7 +1,7 @@
 package lm.user.service;
 
-import lm.user.models.MyUserDetails;
-import lm.user.models.User;
+import lm.user.model.MyUserDetails;
+import lm.user.model.User;
 import lm.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
