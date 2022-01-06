@@ -4,8 +4,8 @@ import { SpinnerService } from '../../../../core/services/in-app/spinner.service
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from '../../../../core/services/in-app/snackbar.service';
 import { BooksService } from '../../../../core/services/http/books.service';
-import {ImageCroppedEvent} from 'ngx-image-cropper';
-import {Helpers} from '../../../../shared/helpers/helpers';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { Helpers } from '../../../../shared/helpers/helpers';
 
 @Component({
   selector: 'app-lm-books-modal',
@@ -60,18 +60,25 @@ export class LmBooksModalComponent {
   }
 
   add() {
-    // this.spinnerService.activate() ;
+    this.spinnerService.activate() ;
 
-    let book = this.form.value ;
+    let book = {
+      ...this.form.value ,
+      active: true
+    }
     const blob = new Blob([JSON.stringify(book)], {type: 'application/json'});
     this.request.append('book', blob);
 
     this.booksService.add(this.request).subscribe(
       res => {
-        console.log(res)
+        Helpers.addToArray(res , this.data.array)
+        this.snackbarService.openSnackBar('Livre ajouté avec succès', 'success');
+        this.spinnerService.deactivate();
+        this.matDialogRef.close();
       },
       error => {
-        console.log(error)
+        this.snackbarService.openSnackBar('Erreur lors de l\'ajout', 'fail');
+        this.spinnerService.deactivate();
       }
     )
   }

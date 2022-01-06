@@ -52,7 +52,7 @@
     </div>
 
     <div class="col-12 mt-2" >
-      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid" *ngIf="!data.edit">
+      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid || !croppedImage" *ngIf="!data.edit">
         Ajouter
       </button>
       <button class="submit-btn full-width" (click)="update()" [disabled]="!form.valid" *ngIf="data.edit">

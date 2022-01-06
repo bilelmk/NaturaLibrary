@@ -54,7 +54,7 @@ public class BookController {
 
     @PostMapping("/return")
     public Book returnBook(@RequestBody BorrowRequest request) {
-        return  bookService.returnBook(request.getBookId());
+        return  bookService.returnBook(request);
     }
 
 

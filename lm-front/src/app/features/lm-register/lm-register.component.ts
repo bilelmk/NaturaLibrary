@@ -33,8 +33,12 @@ export class LmRegisterComponent implements OnInit {
   }
 
   register() {
+    let user = {
+      ...this.form.value ,
+      active : true
+    }
     this.spinnerService.activate()
-    this.usersService.add(this.form.value).subscribe(
+    this.usersService.add(user).subscribe(
       res => {
         this.spinnerService.deactivate() ;
         this.snackbarService.openSnackBar("Compte créer avec succès" , 'success')

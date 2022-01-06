@@ -37,7 +37,7 @@ public class UserService {
 
 
     public List<User> getAll() {
-        return userRepository.findAll() ;
+        return userRepository.findAllByActive(true) ;
     }
 
     public User getOne(Long id) {
@@ -55,6 +55,7 @@ public class UserService {
         toUpdateUser.setLastName(user.getLastName());
         toUpdateUser.setUsername(user.getUsername());
         toUpdateUser.setLevel(user.getLevel());
+        toUpdateUser.setActive(true);
         return userRepository.save(toUpdateUser) ;
     }
 
@@ -71,7 +72,9 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        userRepository.deleteById(id);
+        User user = userRepository.findById(id).orElseThrow(IllegalArgumentException::new) ;
+        user.setActive(false);
+        userRepository.save(user);
     }
 
 }

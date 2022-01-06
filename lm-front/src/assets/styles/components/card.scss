@@ -20,3 +20,18 @@ mat-card {
   height: 120px;
   overflow: scroll;
 }
+.card-tag {
+  position: relative;
+  top:-12px ;
+  padding: 8px;
+  color: $lm-white;
+  font-size: 12px;
+}
+
+.available {
+  background-color: $lm-success;
+}
+
+.not-available {
+  background-color: $lm-danger
+}

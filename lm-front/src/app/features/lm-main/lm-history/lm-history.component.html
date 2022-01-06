@@ -1,1 +1,56 @@
-<p>lm-history works!</p>
+<div class="page" *ngIf="!loading">
+
+  <div class="row mt-2 mb-2 justify-content-between align-items-center">
+    <div>
+      <p class="title">
+        <span class="material-icons title-icon">history_toggle_off</span>
+        Historique
+      </p>
+    </div>
+    <div  class="row align-items-center">
+      <input #key class="search" (input)="applyFilter(key.value)">
+    </div>
+  </div>
+
+  <div class="row"  *ngIf="histories?.length > 0">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="user" >
+        <mat-header-cell *matHeaderCellDef >Etudiant</mat-header-cell>
+        <mat-cell *matCellDef="let history" >
+          <p class="cell-text"  > {{history.user?.firstName +  " " + history.user?.lastName}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="book" >
+        <mat-header-cell *matHeaderCellDef >Livre</mat-header-cell>
+        <mat-cell *matCellDef="let history" >
+          <p class="cell-text"  > {{history.book?.name}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef >Type d'opération</mat-header-cell>
+        <mat-cell *matCellDef="let history" >
+          <p class="cell-text" > {{history.type}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef >Date</mat-header-cell>
+        <mat-cell *matCellDef="let history" >
+          <p class="cell-text" > {{history.date | date}} </p>
+        </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row class="text-center" *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row class="contact" *matRowDef="let type; columns: displayedColumns;" ></mat-row>
+    </table>
+    <mat-paginator class="full-width" [pageSizeOptions]="[10]"></mat-paginator>
+  </div>
+
+  <app-lm-errors [array]="histories" [error]="error"></app-lm-errors>
+
+</div>
+

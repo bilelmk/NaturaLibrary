@@ -8,7 +8,8 @@ import { SnackbarService } from '../../../core/services/in-app/snackbar.service'
 import { Book } from '../../../core/models/book';
 import { BooksService } from '../../../core/services/http/books.service';
 import { LmBooksModalComponent } from './lm-books-modal/lm-books-modal.component';
-import {LmBooksBorrowComponent} from './lm-books-borrow/lm-books-borrow.component';
+import { LmBooksBorrowComponent } from './lm-books-borrow/lm-books-borrow.component';
+import { Helpers } from '../../../shared/helpers/helpers';
 
 @Component({
   selector: 'app-lm-books',
@@ -85,7 +86,7 @@ export class LmBooksComponent implements OnInit {
 
   returnBook(item){
     this.spinnerService.activate()
-    this.booksService.returnBook({bookId : item.id}).subscribe(
+    this.booksService.returnBook({bookId : item.id , userId: item.borrowerUser.id}).subscribe(
       res => {
         this.spinnerService.deactivate()
         console.log(res)
@@ -100,26 +101,26 @@ export class LmBooksComponent implements OnInit {
   openDeleteAlert(book: any) {
     this.alertService.showAlert(
       () => {
-  //       this.delete(admin)
+        this.delete(book)
       }, "voulez-vous vraiment supprimer"
     )
   }
 
-  // delete(admin: Admin) {
-  //   this.spinnerService.activate()
-  //   this.adminsService.delete(admin.id).subscribe(
-  //     res => {
-  //       this.snackbarService.openSnackBar('Admin supprimé avec succès','success') ;
-  //       Helpers.deleteFromArray(admin , this.admins)
-  //       this.dataSource.data = this.admins
-  //       this.spinnerService.deactivate()
-  //     },
-  //     err => {
-  //       this.snackbarService.openSnackBar('Erreur lors de la suppression', 'fail');
-  //       this.spinnerService.deactivate()
-  //     }
-  //   )
-  // }
+  delete(book: Book) {
+    this.spinnerService.activate()
+    this.booksService.delete(book.id).subscribe(
+      res => {
+        this.snackbarService.openSnackBar('Livre supprimé avec succès','success') ;
+        Helpers.deleteFromArray(book , this.books)
+        this.dataSource.data = this.books
+        this.spinnerService.deactivate()
+      },
+      err => {
+        this.snackbarService.openSnackBar('Erreur lors de la suppression', 'fail');
+        this.spinnerService.deactivate()
+      }
+    )
+  }
 
   applyFilter(filterValue: string) {
     let toFilterList = [...this.books]

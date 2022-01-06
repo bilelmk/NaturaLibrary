@@ -4,7 +4,6 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -24,7 +23,7 @@ public class MyUserDetails implements UserDetails {
         this.password = user.getPassword();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName() ;
-        this.active = true;
+        this.active = user.isActive() ;
         this.authorities = null;
     }
 
@@ -45,6 +44,6 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.active;
     }
 }
