@@ -57,8 +57,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable()
-				.authorizeRequests().antMatchers("/api/admins/login" ).permitAll();
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/admins/login" ).permitAll();
 //				anyRequest().authenticated().and().exceptionHandling();
 	}
 

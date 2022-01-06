@@ -1,28 +1,16 @@
 import { Injectable } from '@angular/core';
-import { SessionStorageService } from '../in-app/session-storage.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Admin } from '../../models/admin';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  URL = "/api/admins" ;
-
-  constructor(private sessionStorageService: SessionStorageService ,
-              private router: Router ,
-              private http: HttpClient) { }
+  constructor(private router: Router) { }
 
   logout() {
-    this.sessionStorageService.clear() ;
+    sessionStorage.clear() ;
     this.router.navigate(['/'])
-  }
-
-  getCurrent(): Observable<Admin> {
-    return this.http.get<Admin>(this.URL);
   }
 
 }

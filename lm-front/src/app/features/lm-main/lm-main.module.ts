@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo : 'admins' ,
+        redirectTo : 'books' ,
         pathMatch: 'full',
       },
       {
@@ -31,8 +31,12 @@ const routes: Routes = [
         loadChildren: () => import('./lm-stats/lm-stats.module').then(m => m.LmStatsModule)
       },
       {
-        path: 'requests',
-        loadChildren: () => import('./lm-request/lm-request.module').then(m => m.LmRequestModule)
+        path: 'my-books',
+        loadChildren: () => import('./lm-my-books/lm-my-books.module').then(m => m.LmMyBooksModule)
+      },
+      {
+        path: 'history',
+        loadChildren: () => import('./lm-history/lm-history.module').then(m => m.LmHistoryModule)
       }
     ]
   }

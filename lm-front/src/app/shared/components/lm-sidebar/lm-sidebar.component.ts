@@ -9,6 +9,7 @@ export class LmSidebarComponent implements OnInit {
 
   opened: boolean;
   events: string[] = [];
+  user;
 
   @Input() routes: any;
 
@@ -21,6 +22,7 @@ export class LmSidebarComponent implements OnInit {
 
   ngOnInit() {
     this.toggleMenu() ;
+    this.user = JSON.parse(sessionStorage.getItem('user'))
   }
 
   toggleMenu(){

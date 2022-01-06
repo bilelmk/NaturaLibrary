@@ -10,44 +10,54 @@ export class LmMainComponent implements OnInit {
   routes = [
     {
       route : "admins" ,
-      name : "Admins" ,
+      name : "Administrateurs" ,
       icon : "manage_accounts" ,
+      role : 'ADMIN'
     },
     {
       route : "users" ,
-      name : "Students" ,
-      icon : "people"
+      name : "Etudiants" ,
+      icon : "people" ,
+      role : 'ADMIN'
     },
     {
       route : "books" ,
-      name : "Books",
-      icon : "book"
+      name : "Listes des Livres",
+      icon : "book",
+      role : 'ALL'
     },
     {
-      route : "profile" ,
-      name : "Profile" ,
-      icon : "chat"
+      route : "my-books" ,
+      name : "Mes Livres",
+      icon : "auto_stories" ,
+      role : 'USER'
+    },
+    {
+      route : "history" ,
+      name : "Historique" ,
+      icon : "history_toggle_off" ,
+      role : 'ADMIN'
     },
     {
       route : "stats" ,
       name : "Statistiques" ,
-      icon : "equalizer"
-    },
-    {
-      route : "requests" ,
-      name : "Request" ,
-      icon : "equalizer"
+      icon : "equalizer" ,
+      role : 'ADMIN'
     },
     {
       handler : this.logout.bind(this) ,
       name : "Se déconnecter" ,
-      icon : "logout"
+      icon : "logout" ,
+      role : 'ALL'
     },
   ];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.routes = this.routes.filter(route => {
+      return route.role == sessionStorage.getItem('role') ||  route.role == 'ALL'
+    })
   }
 
   logout() {

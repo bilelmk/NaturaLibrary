@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { LmRequestComponent } from './lm-request.component';
+import { LmHistoryComponent } from './lm-history.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LmRequestComponent
+    component: LmHistoryComponent
   },
 ];
 
+
 @NgModule({
   declarations: [
-    LmRequestComponent
+    LmHistoryComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
   ]
 })
-
-export class LmRequestModule { }
+export class LmHistoryModule { }

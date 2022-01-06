@@ -16,5 +16,11 @@ public class Book {
     private Long id;
     @Column(unique = true)
     private String name ;
+    private String description ;
+    private String author ;
+    private String publishingDate ;
+    private String image ;
 
+    @ManyToOne
+    private User borrowerUser ;
 }

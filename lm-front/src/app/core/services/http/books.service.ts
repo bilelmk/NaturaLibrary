@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class BooksService {
 
-  URL = "/api/books" ;
+  URL = "http://localhost:8083/api/books" ;
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +16,11 @@ export class BooksService {
     return this.http.get<Book[]>(this.URL);
   }
 
-  add(book: Book): Observable<Book> {
+  getAllByUser(id): Observable<Book[]> {
+    return this.http.get<Book[]>(this.URL + "/user/" + id);
+  }
+
+  add(book: any): Observable<Book> {
     return this.http.post<Book>(this.URL , book);
   }
 
@@ -26,5 +30,13 @@ export class BooksService {
 
   delete(id: number) {
     return this.http.delete(this.URL + "/" + id);
+  }
+
+  borrowBook(request) {
+    return this.http.post(this.URL + "/borrow" , request);
+  }
+
+  returnBook(request) {
+    return this.http.post(this.URL + "/return" , request);
   }
 }

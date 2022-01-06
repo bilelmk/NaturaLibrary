@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SharedModule } from '../../../shared/shared.module';
 import { LmBooksModalComponent } from './lm-books-modal/lm-books-modal.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   {
@@ -35,7 +37,9 @@ const routes: Routes = [
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
-    SharedModule
+    SharedModule,
+    ImageCropperModule,
+    MatCardModule
   ],
   entryComponents: [
     LmBooksModalComponent

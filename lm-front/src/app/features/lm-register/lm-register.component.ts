@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SpinnerService } from '../../core/services/in-app/spinner.service';
-import { SessionStorageService } from '../../core/services/in-app/session-storage.service';
 import { SnackbarService } from '../../core/services/in-app/snackbar.service';
-import {UsersService} from '../../core/services/http/users.service';
+import { UsersService } from '../../core/services/http/users.service';
 
 @Component({
   selector: 'app-lm-register',
@@ -19,7 +18,6 @@ export class LmRegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder ,
               private router: Router ,
               private spinnerService: SpinnerService ,
-              private sessionStorageService: SessionStorageService ,
               private snackbarService: SnackbarService ,
               private usersService: UsersService) {}
 

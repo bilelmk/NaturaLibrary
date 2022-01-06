@@ -22,6 +22,11 @@ table {
 
   mat-cell {
     justify-content: center;
+    max-height: 120px;
+  }
+
+  .description {
+    overflow-y: scroll !important;
   }
 
   mat-header-cell {

@@ -1,11 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SpinnerService} from '../../../../core/services/in-app/spinner.service';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {SnackbarService} from '../../../../core/services/in-app/snackbar.service';
-import {AdminsService} from '../../../../core/services/http/admins.service';
-import {Helpers} from '../../../../shared/helpers/helpers';
-import {UsersService} from '../../../../core/services/http/users.service';
+import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SpinnerService } from '../../../../core/services/in-app/spinner.service';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SnackbarService } from '../../../../core/services/in-app/snackbar.service';
+import { Helpers } from '../../../../shared/helpers/helpers';
+import { UsersService } from '../../../../core/services/http/users.service';
 
 @Component({
   selector: 'app-lm-users-modal',

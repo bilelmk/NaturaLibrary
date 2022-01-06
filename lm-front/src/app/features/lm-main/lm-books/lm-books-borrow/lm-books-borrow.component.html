@@ -1,0 +1,26 @@
+<div class="dialog-container">
+
+  <p class="dialog-title"  >Emprunter un livre</p>
+
+  <form [formGroup]="form" class="row justify-content-center align-items-center p-4 pt-3">
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Etudiant</mat-label>
+        <mat-select formControlName="user" >
+          <mat-option *ngFor="let user of users" [value]="user" >{{user.firstName + " " + user.lastName}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!form.hasError('required')">
+          Ce champ est obligatoire
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <button class="submit-btn full-width" (click)="save()" [disabled]="!form.valid">
+        Emprunter
+      </button>
+    </div>
+
+  </form>
+</div>

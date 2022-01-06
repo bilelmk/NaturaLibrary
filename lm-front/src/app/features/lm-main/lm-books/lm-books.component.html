@@ -1,7 +1,7 @@
 <div class="page" *ngIf="!loading">
 
   <div class="row mt-2 mb-2 justify-content-between align-items-center">
-    <div class="scale-in-center">
+    <div>
       <p class="title">
         <span class="material-icons title-icon">book</span>
         Liste des livres
@@ -9,7 +9,7 @@
     </div>
     <div  class="row align-items-center">
       <input #key class="search" (input)="applyFilter(key.value)">
-      <button class="square-btn ml-2 scale-in-center"  (click)="openModal(false , null)">
+      <button class="square-btn ml-2"  (click)="openModal(false , null)" *ngIf="role == 'ADMIN' ">
         <i class="material-icons icon-blue" >
           add
         </i>
@@ -17,49 +17,99 @@
     </div>
   </div>
 
-<!--  <div class="row scale-in-center"  *ngIf="admins?.length > 0">-->
-<!--    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">-->
+  <div class="row"  *ngIf="books?.length > 0 && role == 'ADMIN'">
+    <table mat-table [dataSource]="dataSource" >
 
-<!--      <ng-container matColumnDef="username" >-->
-<!--        <mat-header-cell *matHeaderCellDef >Nom d'utilisateur</mat-header-cell>-->
-<!--        <mat-cell *matCellDef="let admin" >-->
-<!--          <p class="cell-text"  > {{admin.username}} </p>-->
-<!--        </mat-cell>-->
-<!--      </ng-container>-->
+      <ng-container matColumnDef="image" >
+        <mat-header-cell *matHeaderCellDef >Image</mat-header-cell>
+        <mat-cell *matCellDef="let book" >
+          <img class="img-fluid" style="width: 100px" [src]="book.image ? 'http://localhost:8083/' + book.image : '../assets/imgs/default-profile.png' ">
+        </mat-cell>
+      </ng-container>
 
-<!--      <ng-container matColumnDef="firstname" >-->
-<!--        <mat-header-cell *matHeaderCellDef >Nom</mat-header-cell>-->
-<!--        <mat-cell *matCellDef="let admin" >-->
-<!--          <p class="cell-text"  > {{admin.firstName}} </p>-->
-<!--        </mat-cell>-->
-<!--      </ng-container>-->
+      <ng-container matColumnDef="name" >
+        <mat-header-cell *matHeaderCellDef >Nom</mat-header-cell>
+        <mat-cell *matCellDef="let book" >
+          <p class="cell-text"  > {{book.name}} </p>
+        </mat-cell>
+      </ng-container>
 
-<!--      <ng-container matColumnDef="lastname">-->
-<!--        <mat-header-cell *matHeaderCellDef >Prénom</mat-header-cell>-->
-<!--        <mat-cell *matCellDef="let admin" >-->
-<!--          <p class="cell-text" > {{admin.lastName}} </p>-->
-<!--        </mat-cell>-->
-<!--      </ng-container>-->
+      <ng-container matColumnDef="description" >
+        <mat-header-cell *matHeaderCellDef >Description</mat-header-cell>
+        <mat-cell class="description" *matCellDef="let book" >
+          <p class="cell-text"  > {{book.description}} </p>
+        </mat-cell>
+      </ng-container>
 
-<!--      <ng-container matColumnDef="buttons">-->
-<!--        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>-->
-<!--        <mat-cell class="cell-text" *matCellDef="let admin">-->
-<!--          <div class="cell-btn" (click)="openModal(true , admin)" >-->
-<!--            <mat-icon>mode_edit</mat-icon>-->
-<!--          </div>-->
-<!--          <div class="cell-btn" (click)="openDeleteAlert(admin)">-->
-<!--            <mat-icon>delete</mat-icon>-->
-<!--          </div>-->
-<!--        </mat-cell>-->
-<!--      </ng-container>-->
+      <ng-container matColumnDef="author" >
+        <mat-header-cell *matHeaderCellDef >Auteur</mat-header-cell>
+        <mat-cell *matCellDef="let book" >
+          <p class="cell-text"  > {{book.author}} </p>
+        </mat-cell>
+      </ng-container>
 
-<!--      <mat-header-row class="text-center" *matHeaderRowDef="displayedColumns"></mat-header-row>-->
-<!--      <mat-row class="contact" *matRowDef="let type; columns: displayedColumns;" ></mat-row>-->
-<!--    </table>-->
-<!--    <mat-paginator class="full-width" [pageSizeOptions]="[10]"></mat-paginator>-->
-<!--  </div>-->
+      <ng-container matColumnDef="publishingDate" >
+        <mat-header-cell *matHeaderCellDef >Date de sortie</mat-header-cell>
+        <mat-cell *matCellDef="let book" >
+          <p class="cell-text"> {{book.publishingDate}} </p>
+        </mat-cell>
+      </ng-container>
 
-<!--  <app-lm-errors [array]="admins" [error]="error"></app-lm-errors>-->
+      <ng-container matColumnDef="available" >
+        <mat-header-cell *matHeaderCellDef >Disponible</mat-header-cell>
+        <mat-cell *matCellDef="let book" >
+          <mat-icon *ngIf="book.borrowerUser" class="icon-danger">remove_circle</mat-icon>
+          <mat-icon  *ngIf="!book.borrowerUser" class="icon-success">check_circle</mat-icon>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="borrower" >
+        <mat-header-cell *matHeaderCellDef >Emprunteur</mat-header-cell>
+        <mat-cell *matCellDef="let book" >
+          <p class="cell-text"> {{book.borrowerUser ? book.borrowerUser.firstName + " " + book.borrowerUser.lastName : "--"}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell class="cell-text" *matCellDef="let book">
+
+          <div class="cell-btn" *ngIf="book.borrowerUser" (click)="returnBook( book)" >
+            <mat-icon>keyboard_return</mat-icon>
+          </div>
+
+          <div class="cell-btn" *ngIf="!book.borrowerUser" (click)="openBorrowModal( book)" >
+            <mat-icon>handshake</mat-icon>
+          </div>
+          <div class="cell-btn" (click)="openModal(true , book)" >
+            <mat-icon>mode_edit</mat-icon>
+          </div>
+          <div class="cell-btn" (click)="openDeleteAlert(book)">
+            <mat-icon>delete</mat-icon>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row class="text-center" *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row class="contact" *matRowDef="let type; columns: displayedColumns;" ></mat-row>
+    </table>
+    <mat-paginator class="full-width" [pageSizeOptions]="[5]"></mat-paginator>
+  </div>
+
+  <div class="row"  *ngIf="books?.length > 0 && role == 'USER'">
+    <div *ngFor="let book of booksArray" class="col-12 col-sm-4 col-md-3 col-lg-2 mt-4">
+      <mat-card >
+        <img mat-card-image class="pointer img-fluid no-margin"
+             [src]="book.image ? 'http://localhost:8083/' + book.image : '../assets/imgs/default-profile.png' ">
+        <mat-card-content class="p-3">
+          <h2>{{book.name}}</h2>
+          <p>{{book.description}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <app-lm-errors [array]="books" [error]="error"></app-lm-errors>
 
 </div>
 

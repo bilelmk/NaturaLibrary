@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SpinnerService } from '../../core/services/in-app/spinner.service';
-import { SessionStorageService } from '../../core/services/in-app/session-storage.service';
 import { SnackbarService } from '../../core/services/in-app/snackbar.service';
 import { AdminsService } from '../../core/services/http/admins.service';
 import { UsersService } from '../../core/services/http/users.service';
@@ -21,7 +20,6 @@ export class LmLoginComponent implements OnInit {
               private router: Router ,
               private spinnerService: SpinnerService ,
               private adminService: AdminsService ,
-              private sessionStorageService: SessionStorageService ,
               private snackbarService: SnackbarService,
               private usersService: UsersService) {}
 
@@ -44,7 +42,9 @@ export class LmLoginComponent implements OnInit {
     if(this.loginForm.value.type == 'user') {
       this.usersService.login(authRequest).subscribe(
         res => {
-          this.sessionStorageService.save(res.token) ;
+          sessionStorage.setItem('user', JSON.stringify(res.user))
+          sessionStorage.setItem('token' , res.token) ;
+          sessionStorage.setItem('role' , 'USER') ;
           this.spinnerService.deactivate() ;
           this.snackbarService.openSnackBar("Connecté avec succès" , 'success')
           this.router.navigate(['/main'])
@@ -58,7 +58,10 @@ export class LmLoginComponent implements OnInit {
     else {
       this.adminService.login(authRequest).subscribe(
         res => {
-          this.sessionStorageService.save(res.token) ;
+          console.log(res);
+          sessionStorage.setItem('user', JSON.stringify(res.user))
+          sessionStorage.setItem('token' , res.token) ;
+          sessionStorage.setItem('role' , 'ADMIN') ;
           this.spinnerService.deactivate() ;
           this.snackbarService.openSnackBar("Connecté avec succès" , 'success')
           this.router.navigate(['/main'])
