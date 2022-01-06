@@ -101,9 +101,10 @@
       <mat-card >
         <img mat-card-image class="pointer img-fluid no-margin"
              [src]="book.image ? 'http://localhost:8083/' + book.image : '../assets/imgs/default-profile.png' ">
-        <mat-card-content class="p-3">
-          <h2>{{book.name}}</h2>
-          <p>{{book.description}}</p>
+        <mat-card-content class="pt-2 pb-3 pr-3 pl-3 card-container">
+          <h2 class="card-title" >{{book.name}}</h2>
+          <p class="card-text">{{ "Auteur : " + book.author}}</p>
+          <p class="card-text">{{book.description}}</p>
         </mat-card-content>
       </mat-card>
     </div>

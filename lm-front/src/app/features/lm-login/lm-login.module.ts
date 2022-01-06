@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -20,13 +21,14 @@ const routes: Routes = [
     LmLoginComponent
   ],
   imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatCardModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonToggleModule
+      CommonModule,
+      RouterModule.forChild(routes),
+      MatCardModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatButtonToggleModule,
+      MatIconModule
   ]
 })
 export class LmLoginModule { }

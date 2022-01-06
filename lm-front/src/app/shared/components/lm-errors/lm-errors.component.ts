@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lm-errors',
@@ -6,7 +6,6 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./lm-errors.component.scss']
 })
 export class LmErrorsComponent implements OnInit {
-
 
   @Input("array") array: any[]  ;
   @Input("error") error: boolean;

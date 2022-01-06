@@ -1,0 +1,12 @@
+@import "../variables";
+
+.copyright {
+  border-top: 1px solid rgba(0,0,0,.1);
+  text-align: center;
+  width: 100%;
+  padding: 12px ;
+  margin: 0 !important;
+  font-weight: bold ;
+  color: $lm-dark;
+  font-size: 12px;
+}

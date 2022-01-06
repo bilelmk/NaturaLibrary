@@ -29,14 +29,9 @@
     <div class="col-12" *ngIf="!data.edit">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Mot de passe</mat-label>
-        <input  formControlName="password" matInput type="password" required>
-      </mat-form-field>
-    </div>
-
-    <div class="col-12" *ngIf="!data.edit">
-      <mat-form-field class="full-width" appearance="outline">
-        <mat-label>Confimer le mot de passe</mat-label>
-        <input  formControlName="confirm" matInput type="password" required>
+        <input  formControlName="password" matInput [type]="visibility ? 'text' : 'password'" required>
+        <mat-icon class="pointer" *ngIf="!visibility" (click)="togglePasswordVisibility()" matSuffix>visibility_outlined</mat-icon>
+        <mat-icon class="pointer" *ngIf="visibility" (click)="togglePasswordVisibility()" matSuffix>visibility_off_outlined</mat-icon>
       </mat-form-field>
     </div>
 

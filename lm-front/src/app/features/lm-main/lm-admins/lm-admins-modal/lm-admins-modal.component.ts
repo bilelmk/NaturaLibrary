@@ -14,6 +14,7 @@ import { Helpers } from '../../../../shared/helpers/helpers';
 export class LmAdminsModalComponent {
 
   form: FormGroup;
+  visibility = false;
 
   constructor(private spinnerService: SpinnerService,
               public dialog: MatDialog,
@@ -26,7 +27,6 @@ export class LmAdminsModalComponent {
         firstName: new FormControl("", Validators.required),
         lastName:  new FormControl("", Validators.required),
         password: new FormControl("", Validators.required),
-        confirm: new FormControl("", Validators.required),
         username: new FormControl("", Validators.required),
       });
     }
@@ -44,7 +44,6 @@ export class LmAdminsModalComponent {
     this.spinnerService.activate();
     this.adminService.add(this.form.value).subscribe(
       (res) => {
-        console.log(res)
         Helpers.addToArray(res , this.data.array)
         this.snackbarService.openSnackBar('Administrateur ajouté avec succès', 'success');
         this.spinnerService.deactivate();
@@ -75,5 +74,9 @@ export class LmAdminsModalComponent {
         this.spinnerService.deactivate();
       }
     );
+  }
+
+  togglePasswordVisibility() {
+    this.visibility = !this.visibility ;
   }
 }

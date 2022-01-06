@@ -93,7 +93,9 @@ export class LmAdminsComponent implements OnInit {
     let toFilterList = [...this.admins]
     toFilterList = toFilterList.filter(
       admin => {
-        return admin.username.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1;
+        return admin.username.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1 ||
+        admin.firstName.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1 ||
+        admin.lastName.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1 ;
       }
     )
     this.dataSource.data = toFilterList;

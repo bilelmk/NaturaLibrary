@@ -1,9 +1,10 @@
-@import "src/assets/styles/variables";
+@import "../variables";
 
 .custom-dialog-container .mat-dialog-container {
-  border-radius: 0 !important; ;
-  padding: 0 !important;;
-  margin: 0 !important;;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
 }
 
 .mat-form-field-wrapper {

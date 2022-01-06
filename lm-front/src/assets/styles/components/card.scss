@@ -3,5 +3,20 @@
 mat-card {
   border-radius: 0;
   padding: 0 !important;
-  box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%) !important;
+//  box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%) !important;
+}
+
+.card-title {
+  font-size: 15px !important;
+  margin: 0 !important;
+}
+
+.card-text {
+  font-size: 12px !important;
+  margin: 0 !important;
+}
+
+.card-container {
+  height: 120px;
+  overflow: scroll;
 }

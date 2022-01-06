@@ -93,7 +93,10 @@ export class LmUsersComponent implements OnInit {
     let toFilterList = [...this.users]
     toFilterList = toFilterList.filter(
       user => {
-        return user.username.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1;
+        return user.username.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1 ||
+          user.firstName.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1 ||
+          user.lastName.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1 ||
+          user.level.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
       }
     )
     this.dataSource.data = toFilterList;

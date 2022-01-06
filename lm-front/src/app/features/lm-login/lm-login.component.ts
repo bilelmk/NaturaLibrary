@@ -15,6 +15,7 @@ export class LmLoginComponent implements OnInit {
 
   loginForm: FormGroup;
   error : string = null ;
+  visibility = false;
 
   constructor(private formBuilder: FormBuilder ,
               private router: Router ,
@@ -77,5 +78,9 @@ export class LmLoginComponent implements OnInit {
 
   toRegister() {
     this.router.navigate(['/register'])
+  }
+
+  togglePasswordVisibility() {
+    this.visibility = !this.visibility ;
   }
 }
