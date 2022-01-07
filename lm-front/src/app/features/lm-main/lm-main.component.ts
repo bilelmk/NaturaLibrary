@@ -43,13 +43,7 @@ export class LmMainComponent implements OnInit {
       name : "Statistiques" ,
       icon : "equalizer" ,
       role : 'ADMIN'
-    },
-    {
-      handler : this.logout.bind(this) ,
-      name : "Se déconnecter" ,
-      icon : "logout" ,
-      role : 'ALL'
-    },
+    }
   ];
 
   constructor() { }
@@ -60,7 +54,4 @@ export class LmMainComponent implements OnInit {
     })
   }
 
-  logout() {
-    // this.authenticationService.logout()
-  }
 }

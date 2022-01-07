@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'admins',
-        loadChildren: () => import('./lm-admins/lm-admins.module').then(m => m.LmAdminsModule)
+        loadChildren: () => import('./lm-admins/lm-admins.module').then(m => m.LmAdminsModule) ,
       },
       {
         path: 'users',

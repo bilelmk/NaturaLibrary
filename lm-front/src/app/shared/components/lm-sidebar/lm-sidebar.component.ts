@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lm-sidebar',
@@ -18,7 +19,7 @@ export class LmSidebarComponent implements OnInit {
     this.toggleMenu() ;
   }
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.toggleMenu() ;
@@ -29,6 +30,10 @@ export class LmSidebarComponent implements OnInit {
     this.opened = window.innerWidth > 990;
   }
 
+  logout() {
+    sessionStorage.clear() ;
+    this.router.navigate(['/'])
+  }
 }
 
 
