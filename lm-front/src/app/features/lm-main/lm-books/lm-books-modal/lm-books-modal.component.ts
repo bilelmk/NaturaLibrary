@@ -84,7 +84,30 @@ export class LmBooksModalComponent {
   }
 
   update() {
+    this.spinnerService.activate() ;
+    let book = {
+      ...this.form.value ,
+      id: this.data.item.id
+    }
+    const blob = new Blob([JSON.stringify(book)], {type: 'application/json'});
+    if(!this.request) {
+      this.request = new FormData();
+      this.request.append('image' ,   null ) ;
+    }
+    this.request.append('book', blob);
 
+    this.booksService.update(this.request).subscribe(
+      res => {
+        Helpers.updateFields(res , this.data.item)
+        this.snackbarService.openSnackBar('Livre modifié avec succès', 'success');
+        this.spinnerService.deactivate();
+        this.matDialogRef.close();
+      },
+      error => {
+        this.snackbarService.openSnackBar('Erreur lors de la modification', 'fail');
+        this.spinnerService.deactivate();
+      }
+    )
   }
 
 

@@ -38,8 +38,9 @@ public class BookController {
     }
 
     @PutMapping()
-    public Book update(@RequestBody Book book) {
-        return this.bookService.update(book);
+    public Book update(@RequestPart(value = "image", required = false) MultipartFile image ,
+                       @RequestPart("book") Book book) {
+        return this.bookService.update(book ,image);
     }
 
     @DeleteMapping("{id}")

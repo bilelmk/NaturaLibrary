@@ -46,9 +46,16 @@ public class BookService {
         return bookRepository.save(book) ;
     }
 
-    public Book update(Book book) {
+    public Book update(Book book, MultipartFile image) {
         Book toUpdateAdmin = getOne(book.getId()) ;
+        if(image != null ){
+            String newFileName = uploadUtil.upload(image);
+            toUpdateAdmin.setImage("images/" + newFileName);
+        }
         toUpdateAdmin.setName(book.getName());
+        toUpdateAdmin.setDescription(book.getDescription());
+        toUpdateAdmin.setAuthor(book.getAuthor());
+        toUpdateAdmin.setPublishingDate(book.getPublishingDate());
         return bookRepository.save(toUpdateAdmin) ;
     }
 
