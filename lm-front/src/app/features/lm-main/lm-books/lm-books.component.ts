@@ -88,12 +88,13 @@ export class LmBooksComponent implements OnInit {
     this.spinnerService.activate()
     this.booksService.returnBook({bookId : item.id , userId: item.borrowerUser.id}).subscribe(
       res => {
+        Helpers.updateFields(res ,item )
+        this.snackbarService.openSnackBar("Opération réussite", 'success');
         this.spinnerService.deactivate()
-        console.log(res)
       },
       err => {
+        this.snackbarService.openSnackBar("Erreur lors de l'opération", 'fail');
         this.spinnerService.deactivate()
-        console.log(err)
       }
     )
   }

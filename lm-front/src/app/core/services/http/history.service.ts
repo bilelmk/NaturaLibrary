@@ -16,4 +16,8 @@ export class HistoryService {
     return this.http.get<History[]>(this.URL);
   }
 
+  getStats(): Observable<any> {
+    return this.http.get<any>(this.URL + "/stats");
+  }
+
 }

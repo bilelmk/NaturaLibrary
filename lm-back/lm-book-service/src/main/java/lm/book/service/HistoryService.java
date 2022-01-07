@@ -20,4 +20,8 @@ public class HistoryService {
     public History create(History book) {
         return historyRepository.save(book) ;
     }
+
+    public Object getBorrowedBookPerDay(){
+        return historyRepository.findAllByType("BORROW") ;
+    }
 }

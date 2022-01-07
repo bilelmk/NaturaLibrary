@@ -23,7 +23,7 @@
       <ng-container matColumnDef="image" >
         <mat-header-cell *matHeaderCellDef >Image</mat-header-cell>
         <mat-cell *matCellDef="let book" >
-          <img class="img-fluid" style="width: 100px" [src]="book.image ? 'http://localhost:8083/' + book.image : '../assets/imgs/default-profile.png' ">
+          <img class="img-fluid table-img" [src]="book.image ? 'http://localhost:8083/' + book.image : '../assets/imgs/default-profile.png' ">
         </mat-cell>
       </ng-container>
 

@@ -13,6 +13,8 @@ import { SharedModule } from '../../../shared/shared.module';
 import { LmBooksModalComponent } from './lm-books-modal/lm-books-modal.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatCardModule } from '@angular/material/card';
+import { LmBooksBorrowComponent } from './lm-books-borrow/lm-books-borrow.component';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   {
@@ -24,7 +26,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     LmBooksComponent,
-    LmBooksModalComponent
+    LmBooksModalComponent,
+    LmBooksBorrowComponent
   ],
   imports: [
     CommonModule,
@@ -39,10 +42,12 @@ const routes: Routes = [
     MatPaginatorModule,
     SharedModule,
     ImageCropperModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule
   ],
   entryComponents: [
-    LmBooksModalComponent
+    LmBooksModalComponent,
+    LmBooksBorrowComponent
   ]
 })
 export class LmBooksModule { }

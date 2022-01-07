@@ -6,6 +6,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { SnackbarService } from '../../../../core/services/in-app/snackbar.service';
 import { BooksService } from '../../../../core/services/http/books.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Helpers} from '../../../../shared/helpers/helpers';
 
 @Component({
   selector: 'app-lm-books-borrow',
@@ -47,9 +48,11 @@ export class LmBooksBorrowComponent implements OnInit {
     }
     this.booksService.borrowBook(request).subscribe(
       res => {
-        console.log(res)
+        Helpers.updateFields(res ,this.data.item )
+        this.snackbarService.openSnackBar("Opération réussite", 'success');
+        this.matDialogRef.close();
       },error => {
-        console.log(error)
+        this.snackbarService.openSnackBar("Erreur lors de l'opération", 'fail');
       }
     )
   }

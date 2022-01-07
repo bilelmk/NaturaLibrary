@@ -20,5 +20,11 @@ public class HistoryController {
     public List<History> getAll() {
         return this.historyService.getAll();
     }
+
+    @GetMapping("stats")
+    public Object getStats() {
+        return this.historyService.getBorrowedBookPerDay();
+    }
+
 }
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class BookService {
         Book book = bookRepository.findById(request.getBookId()).orElseThrow(IllegalArgumentException::new);
         User user = userRepository.findById(request.getUserId()).orElseThrow(IllegalArgumentException::new);
         book.setBorrowerUser(user);
-        historyService.create(new History(null , LocalDateTime.now().toString(), "BORROW" , user , book ));
+        historyService.create(new History(null , LocalDate.now().toString(), "BORROW" , user , book ));
         return bookRepository.save(book);
     }
 
@@ -73,7 +74,7 @@ public class BookService {
         Book book = bookRepository.findById(request.getBookId()).orElseThrow(IllegalArgumentException::new);
         User user = userRepository.findById(request.getUserId()).orElseThrow(IllegalArgumentException::new);
         book.setBorrowerUser(null);
-        historyService.create(new History(null , LocalDateTime.now().toString(), "RETURN" , user , book ));
+        historyService.create(new History(null , LocalDate.now().toString(), "RETURN" , user , book ));
         return bookRepository.save(book);
     }
 }

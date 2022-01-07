@@ -10,4 +10,74 @@
 
   </div>
 
+  <div class="row justify-content-center mt-5" >
+    <div class="col-12 col-lg-4">
+      <mat-card class="p-3 stat-card" >
+        <p class="title">
+          <span class="material-icons title-icon">book</span>
+          Nombres de livres
+        </p>
+        <h1 class=" mt-5 stat-number">{{booksNumber}}</h1>
+      </mat-card>
+
+    </div>
+    <div class="col-12 col-lg-4">
+      <mat-card class="p-3 stat-card" >
+        <p class="title">
+          <span class="material-icons title-icon">people</span>
+          Nombres des étudiants
+        </p>
+        <h1 class=" mt-5 stat-number">{{usersNumber}}</h1>
+      </mat-card>
+
+    </div>
+    <div class="col-12 col-lg-4">
+      <mat-card class="p-3 stat-card">
+        <p class="title">
+          <span class="material-icons title-icon">auto_stories</span>
+          Livres emprunté/étudiant
+        </p>
+        <h1 class=" mt-5 stat-number">{{borrowedBookPerUser}}</h1>
+      </mat-card>
+    </div>
+
+    <div class="col-12 col-lg-5 mt-5">
+      <div class="stat-chart" >
+        <canvas baseChart
+          [data]="bookPieChartData"
+          [labels]="bookPieChartLabels"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [legend]="pieChartLegend"
+          [colors]="pieChartColors">
+        </canvas>
+    </div>
+    </div>
+
+    <div class="col-12 col-lg-5 mt-5">
+      <div class="stat-chart" >
+        <canvas baseChart
+          [data]="userPieChartData"
+          [labels]="userPieChartLabels"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [legend]="pieChartLegend"
+          [colors]="pieChartColors">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="col-12 mt-5">
+      <div class="stat-chart" >
+        <canvas baseChart height="80"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType">
+        </canvas>
+      </div>
+
+    </div>
+  </div>
 </div>

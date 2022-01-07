@@ -11,12 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { LmBooksBorrowComponent } from './features/lm-main/lm-books/lm-books-borrow/lm-books-borrow.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LmBooksBorrowComponent,
   ],
   imports: [
     BrowserModule,
