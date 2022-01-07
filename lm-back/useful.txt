@@ -1,0 +1,7 @@
+ports:
+	config 8080
+	eureka 8081 
+	zuul 8082
+	admin 8083
+	user 8084
+	book 8085

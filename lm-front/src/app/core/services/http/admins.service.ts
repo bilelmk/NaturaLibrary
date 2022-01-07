@@ -9,7 +9,7 @@ import { LoginRequest } from '../../dtos/login-request';
 })
 export class AdminsService {
 
-  URL = "http://localhost:8888/admin-service/api/admins" ;
+  URL = "http://localhost:8082/admin-service/api/admins" ;
 
   constructor(private http: HttpClient) { }
 
