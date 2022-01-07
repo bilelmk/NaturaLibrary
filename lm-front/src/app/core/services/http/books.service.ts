@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class BooksService {
 
-  URL = "http://localhost:8083/api/books" ;
+  URL = "http://localhost:8888/book-service/api/books" ;
 
   constructor(private http: HttpClient) { }
 

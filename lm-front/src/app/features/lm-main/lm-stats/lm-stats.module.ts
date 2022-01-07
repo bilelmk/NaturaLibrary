@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LmStatsComponent } from './lm-stats.component';
 import { ChartsModule } from 'ng2-charts';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   {

@@ -8,7 +8,7 @@ import { History } from '../../models/history';
 })
 export class HistoryService {
 
-  URL = "http://localhost:8083/api/histories" ;
+  URL = "http://localhost:8888/book-service/api/histories" ;
 
   constructor(private http: HttpClient) { }
 

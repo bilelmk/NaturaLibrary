@@ -51,7 +51,7 @@
       <ng-container matColumnDef="publishingDate" >
         <mat-header-cell *matHeaderCellDef >Date de sortie</mat-header-cell>
         <mat-cell *matCellDef="let book" >
-          <p class="cell-text"> {{book.publishingDate}} </p>
+          <p class="cell-text"> {{book.publishingDate | date}} </p>
         </mat-cell>
       </ng-container>
 

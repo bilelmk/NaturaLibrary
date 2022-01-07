@@ -6,7 +6,6 @@ import lm.admin.model.Admin;
 import lm.admin.model.MyUserDetails;
 import lm.admin.repository.AdminRepository;
 import lm.admin.util.JwtUtil;
-import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

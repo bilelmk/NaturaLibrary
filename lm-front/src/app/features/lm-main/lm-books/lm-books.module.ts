@@ -15,6 +15,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatCardModule } from '@angular/material/card';
 import { LmBooksBorrowComponent } from './lm-books-borrow/lm-books-borrow.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const routes: Routes = [
   {
@@ -43,7 +45,9 @@ const routes: Routes = [
     SharedModule,
     ImageCropperModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   entryComponents: [
     LmBooksModalComponent,
