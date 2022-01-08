@@ -1,0 +1,22 @@
+what you need : Intellij IDE
+                IDE for JS ( visual, webstorm ... )
+		Mysql (Xampp prefered) (run on port 3306 with username=root password= (default xampp config)) or change the configuration
+		Git
+		ports (8080,8081,8082,8083,8084,8085,4200) 
+
+clone the project 
+create database "library_management_db"
+for all services ( under lm-back ) maven clean install 
+for config service under ressource/config run : > git init 
+						> git add .
+						> git commit -m config
+install angular deps in lm-front > npm install
+
+run config service ( check its ok on localhost:8080/user-service/default )
+run naming service ( check its ok on localhost:8081)
+run zuul service 
+run others service 
+run the front > npm install (into lm-front)
+
+if its Ok an admin will be created auto username: yoyo password:123456
+try login as admin

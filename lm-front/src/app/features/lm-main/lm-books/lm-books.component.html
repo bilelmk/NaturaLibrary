@@ -23,7 +23,7 @@
       <ng-container matColumnDef="image" >
         <mat-header-cell *matHeaderCellDef >Image</mat-header-cell>
         <mat-cell *matCellDef="let book" >
-          <img class="img-fluid table-img" [src]="book.image ? 'http://localhost:8083/' + book.image : '../assets/imgs/default-profile.png' ">
+          <img class="img-fluid table-img" [src]="book.image ? 'http://localhost:8082/book-service/' + book.image : '../../../../assets/img/no-record.png' ">
         </mat-cell>
       </ng-container>
 
@@ -100,7 +100,7 @@
     <div *ngFor="let book of booksArray" class="col-12 col-sm-4 col-md-3 col-lg-2 mt-4 p-2">
       <mat-card >
         <img mat-card-image class="pointer img-fluid no-margin"
-             [src]="book.image ? 'http://localhost:8083/' + book.image : '../assets/imgs/default-profile.png' ">
+             [src]="book.image ? 'http://localhost:8082/book-service/' + book.image : '../../../../assets/img/no-record.png' ">
         <span class="card-tag" [ngClass]="book.borrowerUser ? 'not-available' : 'available' ">
           {{book.borrowerUser ? 'Non disponible' : 'Disponible'}}
         </span>
